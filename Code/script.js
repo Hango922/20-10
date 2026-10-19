@@ -135,13 +135,14 @@
 
   function next() { const now = Date.now(); if (now - lock < 280) return; lock = now; if (!waiting && idx < S.length - 1) go(idx + 1); }
 
-  /* ================= TƯƠNG TÁC CHẠM & CLICK RIPPLE ================= */
+  /* ================= TƯƠNG TÁC CLICK ĐỂ CHUYỂN CẢNH ================= */
   document.addEventListener('click', e => {
     createRipple(e.clientX, e.clientY);
     spawnBurst(e.clientX, e.clientY);
 
     if (!started) return;
-    if (e.target.closest('.ui,button,input,textarea,a,#gift-envelope')) return;
+    if (e.target.closest('#mute, button, input, textarea, a')) return;
+    if (curScene && curScene.id === 'sc-final') return;
     next();
   });
 
