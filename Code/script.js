@@ -143,22 +143,13 @@
     prog.style.width = ((n + 1) / S.length * 100) + '%';
     hint.classList.toggle('on', n >= 1 && n <= 4);
     waiting = !!st.wait;
-    const skipBtn = $('#btn-skip-final');
-    if (skipBtn) skipBtn.hidden = !!st.final;
+    if (!st.wait && !qp.has('hold')) {
+      timer = setTimeout(() => go(n + 1), snap((st.bars || 1.6) * BAR));
+    }
     if (st.final) setupFinal();
   }
 
-  const btnSkip = $('#btn-skip-final');
-  if (btnSkip) {
-    btnSkip.addEventListener('click', (e) => {
-      e.stopPropagation();
-      $$('.rv.on,.node.on,.edge.on,.lbl.on').forEach(el => el.classList.remove('on'));
-      if (curScene) { curScene.classList.remove('on'); curScene = null; }
-      go(S.length - 1);
-    });
-  }
-
-  function next() { const now = Date.now(); if (now - lock < 380) return; lock = now; if (!waiting && idx < S.length - 1) go(idx + 1); }
+  function next() { const now = Date.now(); if (now - lock < 350) return; lock = now; if (!waiting && idx < S.length - 1) go(idx + 1); }
 
   /* ================= TƯƠNG TÁC CHẠM & CLICK RIPPLE ================= */
   document.addEventListener('click', e => {
@@ -166,7 +157,7 @@
     spawnBurst(e.clientX, e.clientY);
 
     if (!started) return;
-    if (e.target.closest('.ui,button,input,textarea,a,.envelope-box,#modal-creator')) return;
+    if (e.target.closest('.ui,button,input,textarea,a,#gift-envelope')) return;
     next();
   });
 
@@ -329,84 +320,7 @@
     setTimeout(() => go(0), 300);
   });
 
-  /* ================= MODAL TẠO THIỆP RIÊNG ================= */
-  const modalCreator = $('#modal-creator');
-  const btnOpenCreator = $('#btn-open-creator');
-  const btnCreateNow = $('#b-create-now');
-  const btnCloseModal = $('#btn-close-modal');
-  const relPills = $$('.rel-pill');
-  const inpTo = $('#inp-to');
-  const inpFrom = $('#inp-from');
-  const inpMsg = $('#inp-msg');
-  const btnCopyGift = $('#btn-copy-gift');
-  const btnPreviewGift = $('#btn-preview-gift');
 
-  function openCreatorModal() {
-    inpTo.value = TO || '';
-    inpFrom.value = FROM || '';
-    inpMsg.value = MSG || WISH_TEMPLATES[REL] || WISH_TEMPLATES.crush;
-
-    relPills.forEach(p => p.classList.toggle('active', p.dataset.rel === REL));
-    modalCreator.classList.add('open');
-  }
-
-  function closeCreatorModal() {
-    modalCreator.classList.remove('open');
-  }
-
-  btnOpenCreator.addEventListener('click', (e) => { e.stopPropagation(); openCreatorModal(); });
-  btnCreateNow.addEventListener('click', (e) => { e.stopPropagation(); openCreatorModal(); });
-  btnCloseModal.addEventListener('click', closeCreatorModal);
-  modalCreator.addEventListener('click', (e) => { if (e.target === modalCreator) closeCreatorModal(); });
-
-  relPills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      relPills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      const selectedRel = pill.dataset.rel;
-      REL = selectedRel;
-      inpMsg.value = WISH_TEMPLATES[selectedRel] || '';
-    });
-  });
-
-  btnCopyGift.addEventListener('click', () => {
-    TO = inpTo.value.trim();
-    FROM = inpFrom.value.trim();
-    MSG = inpMsg.value.trim();
-
-    const u = new URL(location.href);
-    u.search = '';
-    if (TO) u.searchParams.set('to', TO);
-    if (FROM) u.searchParams.set('from', FROM);
-    if (REL) u.searchParams.set('rel', REL);
-    if (MSG) u.searchParams.set('msg', MSG);
-
-    const finalUrl = u.toString();
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(finalUrl).then(() => {
-        showToast('Đã tạo & sao chép link thành công! Gửi ngay cho người ấy nhé 💌');
-        closeCreatorModal();
-      }).catch(() => prompt('Sao chép liên kết:', finalUrl));
-    } else {
-      prompt('Sao chép liên kết:', finalUrl);
-      closeCreatorModal();
-    }
-  });
-
-  btnPreviewGift.addEventListener('click', () => {
-    TO = inpTo.value.trim();
-    FROM = inpFrom.value.trim();
-    MSG = inpMsg.value.trim();
-
-    S = buildScript();
-    closeCreatorModal();
-    envBox.classList.remove('opened');
-    showToast('Đang mở bản xem thử với thông tin mới ✨');
-
-    $$('.rv.on,.node.on,.edge.on,.lbl.on').forEach(e => e.classList.remove('on'));
-    if (curScene) { curScene.classList.remove('on'); curScene = null; }
-    setTimeout(() => go(0), 400);
-  });
 
   /* Toast thông báo */
   let toastT = null;

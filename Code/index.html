@@ -18,16 +18,6 @@
 
 <!-- Top floating bar -->
 <div id="top-bar">
-  <div class="top-bar-left">
-    <button id="btn-open-creator" class="ui pill-btn" title="Tự tạo thiệp riêng gửi người thân">
-      <span class="btn-icon">✨</span>
-      <span class="btn-text">Tạo thiệp riêng</span>
-    </button>
-    <button id="btn-skip-final" class="ui pill-btn pill-btn-subtle" title="Đến ngay màn nhận thiệp" hidden>
-      <span>Xem thiệp ⏩</span>
-    </button>
-  </div>
-  
   <div id="music-widget" class="ui">
     <div class="eq-bars">
       <span></span><span></span><span></span><span></span>
@@ -196,9 +186,6 @@ Chúc tất cả mọi người có một ngày 20/10 thật vui vẻ, nhận đ
             <button id="b-link" class="act-btn btn-share" type="button" title="Sao chép link này">
               <span>🔗 Chép link</span>
             </button>
-            <button id="b-create-now" class="act-btn btn-create" type="button" title="Tạo thiệp mới">
-              <span>✨ Tạo thiệp mới</span>
-            </button>
             <button id="b-replay" class="act-btn btn-alt" type="button" title="Xem lại">
               <span>↺ Xem lại</span>
             </button>
@@ -252,56 +239,7 @@ Chúc tất cả mọi người có một ngày 20/10 thật vui vẻ, nhận đ
   <small>bật âm thanh để nghe trọn vẹn nhé</small>
 </div>
 
-<!-- Modal tạo thiệp cá nhân hóa -->
-<div id="modal-creator" class="modal-backdrop" aria-hidden="true">
-  <div class="modal-card">
-    <button class="modal-close" id="btn-close-modal" aria-label="Đóng">✕</button>
-    
-    <div class="modal-header">
-      <div class="modal-badge">✨ THIỆP CÁ NHÂN HÓA 20/10</div>
-      <h2>Tạo Thiệp Gửi Tặng</h2>
-      <p>Tạo link quà tặng kèm tên riêng và lời chúc ý nghĩa gửi qua Zalo / Messenger</p>
-    </div>
 
-    <div class="modal-body">
-      <div class="form-row">
-        <div class="form-group">
-          <label for="inp-to">Gửi đến ai (Tên người nhận):</label>
-          <input type="text" id="inp-to" placeholder="Ví dụ: Mẹ yêu, Bé Thảo, Cô Dung..." maxlength="40">
-        </div>
-        <div class="form-group">
-          <label for="inp-from">Từ ai (Tên người gửi):</label>
-          <input type="text" id="inp-from" placeholder="Ví dụ: Con trai, Tuấn, Anh người yêu..." maxlength="40">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Chọn đối tượng để nhận gợi ý lời chúc:</label>
-        <div class="rel-pills" id="rel-pills">
-          <button type="button" class="rel-pill active" data-rel="crush">💖 Người yêu / Vợ</button>
-          <button type="button" class="rel-pill" data-rel="mom">🌸 Mẹ / Bà</button>
-          <button type="button" class="rel-pill" data-rel="sister">🌷 Chị / Em gái</button>
-          <button type="button" class="rel-pill" data-rel="friend">✨ Bạn bè / Đồng nghiệp</button>
-          <button type="button" class="rel-pill" data-rel="teacher">📚 Cô giáo</button>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="inp-msg">Lời chúc của bạn (Nội dung hiển thị trên thiệp):</label>
-        <textarea id="inp-msg" rows="3" placeholder="Nhập lời chúc riêng hoặc chọn mẫu phía trên..."></textarea>
-      </div>
-    </div>
-
-    <div class="modal-footer">
-      <button type="button" id="btn-copy-gift" class="modal-btn btn-primary">
-        <span>📋 Tạo & Chép Link gửi tặng</span>
-      </button>
-      <button type="button" id="btn-preview-gift" class="modal-btn btn-secondary">
-        <span>👁️ Xem thử ngay</span>
-      </button>
-    </div>
-  </div>
-</div>
 
 <!-- Toast thông báo -->
 <div id="toast" class="toast-box"></div>

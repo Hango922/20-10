@@ -46,7 +46,7 @@ button,input,textarea{font:inherit;color:inherit}
   position:fixed;top:calc(12px + env(safe-area-inset-top));
   left:max(14px,env(safe-area-inset-left));
   right:max(14px,env(safe-area-inset-right));
-  display:flex;justify-content:space-between;align-items:center;
+  display:flex;justify-content:flex-end;align-items:center;
   z-index:25;pointer-events:none;
 }
 .ui{pointer-events:auto}
@@ -692,16 +692,6 @@ body:not(.music-playing) .eq-bars span{height:3px!important;animation:none!impor
 
 <!-- Top floating bar -->
 <div id="top-bar">
-  <div class="top-bar-left">
-    <button id="btn-open-creator" class="ui pill-btn" title="Tự tạo thiệp riêng gửi người thân">
-      <span class="btn-icon">✨</span>
-      <span class="btn-text">Tạo thiệp riêng</span>
-    </button>
-    <button id="btn-skip-final" class="ui pill-btn pill-btn-subtle" title="Đến ngay màn nhận thiệp" hidden>
-      <span>Xem thiệp ⏩</span>
-    </button>
-  </div>
-  
   <div id="music-widget" class="ui">
     <div class="eq-bars">
       <span></span><span></span><span></span><span></span>
@@ -870,9 +860,6 @@ Chúc tất cả mọi người có một ngày 20/10 thật vui vẻ, nhận đ
             <button id="b-link" class="act-btn btn-share" type="button" title="Sao chép link này">
               <span>🔗 Chép link</span>
             </button>
-            <button id="b-create-now" class="act-btn btn-create" type="button" title="Tạo thiệp mới">
-              <span>✨ Tạo thiệp mới</span>
-            </button>
             <button id="b-replay" class="act-btn btn-alt" type="button" title="Xem lại">
               <span>↺ Xem lại</span>
             </button>
@@ -926,56 +913,7 @@ Chúc tất cả mọi người có một ngày 20/10 thật vui vẻ, nhận đ
   <small>bật âm thanh để nghe trọn vẹn nhé</small>
 </div>
 
-<!-- Modal tạo thiệp cá nhân hóa -->
-<div id="modal-creator" class="modal-backdrop" aria-hidden="true">
-  <div class="modal-card">
-    <button class="modal-close" id="btn-close-modal" aria-label="Đóng">✕</button>
-    
-    <div class="modal-header">
-      <div class="modal-badge">✨ THIỆP CÁ NHÂN HÓA 20/10</div>
-      <h2>Tạo Thiệp Gửi Tặng</h2>
-      <p>Tạo link quà tặng kèm tên riêng và lời chúc ý nghĩa gửi qua Zalo / Messenger</p>
-    </div>
 
-    <div class="modal-body">
-      <div class="form-row">
-        <div class="form-group">
-          <label for="inp-to">Gửi đến ai (Tên người nhận):</label>
-          <input type="text" id="inp-to" placeholder="Ví dụ: Mẹ yêu, Bé Thảo, Cô Dung..." maxlength="40">
-        </div>
-        <div class="form-group">
-          <label for="inp-from">Từ ai (Tên người gửi):</label>
-          <input type="text" id="inp-from" placeholder="Ví dụ: Con trai, Tuấn, Anh người yêu..." maxlength="40">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Chọn đối tượng để nhận gợi ý lời chúc:</label>
-        <div class="rel-pills" id="rel-pills">
-          <button type="button" class="rel-pill active" data-rel="crush">💖 Người yêu / Vợ</button>
-          <button type="button" class="rel-pill" data-rel="mom">🌸 Mẹ / Bà</button>
-          <button type="button" class="rel-pill" data-rel="sister">🌷 Chị / Em gái</button>
-          <button type="button" class="rel-pill" data-rel="friend">✨ Bạn bè / Đồng nghiệp</button>
-          <button type="button" class="rel-pill" data-rel="teacher">📚 Cô giáo</button>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="inp-msg">Lời chúc của bạn (Nội dung hiển thị trên thiệp):</label>
-        <textarea id="inp-msg" rows="3" placeholder="Nhập lời chúc riêng hoặc chọn mẫu phía trên..."></textarea>
-      </div>
-    </div>
-
-    <div class="modal-footer">
-      <button type="button" id="btn-copy-gift" class="modal-btn btn-primary">
-        <span>📋 Tạo & Chép Link gửi tặng</span>
-      </button>
-      <button type="button" id="btn-preview-gift" class="modal-btn btn-secondary">
-        <span>👁️ Xem thử ngay</span>
-      </button>
-    </div>
-  </div>
-</div>
 
 <!-- Toast thông báo -->
 <div id="toast" class="toast-box"></div>
@@ -1128,22 +1066,13 @@ Chúc tất cả mọi người có một ngày 20/10 thật vui vẻ, nhận đ
     prog.style.width = ((n + 1) / S.length * 100) + '%';
     hint.classList.toggle('on', n >= 1 && n <= 4);
     waiting = !!st.wait;
-    const skipBtn = $('#btn-skip-final');
-    if (skipBtn) skipBtn.hidden = !!st.final;
+    if (!st.wait && !qp.has('hold')) {
+      timer = setTimeout(() => go(n + 1), snap((st.bars || 1.6) * BAR));
+    }
     if (st.final) setupFinal();
   }
 
-  const btnSkip = $('#btn-skip-final');
-  if (btnSkip) {
-    btnSkip.addEventListener('click', (e) => {
-      e.stopPropagation();
-      $$('.rv.on,.node.on,.edge.on,.lbl.on').forEach(el => el.classList.remove('on'));
-      if (curScene) { curScene.classList.remove('on'); curScene = null; }
-      go(S.length - 1);
-    });
-  }
-
-  function next() { const now = Date.now(); if (now - lock < 380) return; lock = now; if (!waiting && idx < S.length - 1) go(idx + 1); }
+  function next() { const now = Date.now(); if (now - lock < 350) return; lock = now; if (!waiting && idx < S.length - 1) go(idx + 1); }
 
   /* ================= TƯƠNG TÁC CHẠM & CLICK RIPPLE ================= */
   document.addEventListener('click', e => {
@@ -1151,7 +1080,7 @@ Chúc tất cả mọi người có một ngày 20/10 thật vui vẻ, nhận đ
     spawnBurst(e.clientX, e.clientY);
 
     if (!started) return;
-    if (e.target.closest('.ui,button,input,textarea,a,.envelope-box,#modal-creator')) return;
+    if (e.target.closest('.ui,button,input,textarea,a,#gift-envelope')) return;
     next();
   });
 
@@ -1314,84 +1243,7 @@ Chúc tất cả mọi người có một ngày 20/10 thật vui vẻ, nhận đ
     setTimeout(() => go(0), 300);
   });
 
-  /* ================= MODAL TẠO THIỆP RIÊNG ================= */
-  const modalCreator = $('#modal-creator');
-  const btnOpenCreator = $('#btn-open-creator');
-  const btnCreateNow = $('#b-create-now');
-  const btnCloseModal = $('#btn-close-modal');
-  const relPills = $$('.rel-pill');
-  const inpTo = $('#inp-to');
-  const inpFrom = $('#inp-from');
-  const inpMsg = $('#inp-msg');
-  const btnCopyGift = $('#btn-copy-gift');
-  const btnPreviewGift = $('#btn-preview-gift');
 
-  function openCreatorModal() {
-    inpTo.value = TO || '';
-    inpFrom.value = FROM || '';
-    inpMsg.value = MSG || WISH_TEMPLATES[REL] || WISH_TEMPLATES.crush;
-
-    relPills.forEach(p => p.classList.toggle('active', p.dataset.rel === REL));
-    modalCreator.classList.add('open');
-  }
-
-  function closeCreatorModal() {
-    modalCreator.classList.remove('open');
-  }
-
-  btnOpenCreator.addEventListener('click', (e) => { e.stopPropagation(); openCreatorModal(); });
-  btnCreateNow.addEventListener('click', (e) => { e.stopPropagation(); openCreatorModal(); });
-  btnCloseModal.addEventListener('click', closeCreatorModal);
-  modalCreator.addEventListener('click', (e) => { if (e.target === modalCreator) closeCreatorModal(); });
-
-  relPills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      relPills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-      const selectedRel = pill.dataset.rel;
-      REL = selectedRel;
-      inpMsg.value = WISH_TEMPLATES[selectedRel] || '';
-    });
-  });
-
-  btnCopyGift.addEventListener('click', () => {
-    TO = inpTo.value.trim();
-    FROM = inpFrom.value.trim();
-    MSG = inpMsg.value.trim();
-
-    const u = new URL(location.href);
-    u.search = '';
-    if (TO) u.searchParams.set('to', TO);
-    if (FROM) u.searchParams.set('from', FROM);
-    if (REL) u.searchParams.set('rel', REL);
-    if (MSG) u.searchParams.set('msg', MSG);
-
-    const finalUrl = u.toString();
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(finalUrl).then(() => {
-        showToast('Đã tạo & sao chép link thành công! Gửi ngay cho người ấy nhé 💌');
-        closeCreatorModal();
-      }).catch(() => prompt('Sao chép liên kết:', finalUrl));
-    } else {
-      prompt('Sao chép liên kết:', finalUrl);
-      closeCreatorModal();
-    }
-  });
-
-  btnPreviewGift.addEventListener('click', () => {
-    TO = inpTo.value.trim();
-    FROM = inpFrom.value.trim();
-    MSG = inpMsg.value.trim();
-
-    S = buildScript();
-    closeCreatorModal();
-    envBox.classList.remove('opened');
-    showToast('Đang mở bản xem thử với thông tin mới ✨');
-
-    $$('.rv.on,.node.on,.edge.on,.lbl.on').forEach(e => e.classList.remove('on'));
-    if (curScene) { curScene.classList.remove('on'); curScene = null; }
-    setTimeout(() => go(0), 400);
-  });
 
   /* Toast thông báo */
   let toastT = null;
