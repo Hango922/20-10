@@ -3,8 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#000000">
-<title>Nụ & lời chúc 20/10</title>
+<meta name="theme-color" content="#0b0720">
+<title>Nụ & Lời chúc 20/10 ✨ Ngày Phụ nữ Việt Nam</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="m-hero">
@@ -12,9 +15,29 @@
 <div id="bgs"><div class="bgl on"></div><div class="bgl"></div><div class="bgl"></div><div class="bgl"></div></div>
 <canvas id="fx"></canvas>
 <div id="prog"></div>
-<button id="mute" class="ui" aria-label="Bật/tắt nhạc">
-  <svg viewBox="0 0 24 24"><g class="on"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 010 7M19 6a8.5 8.5 0 010 12"/></g><g class="off"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 9l5 6M22 9l-5 6"/></g></svg>
-</button>
+
+<!-- Top floating bar -->
+<div id="top-bar">
+  <div class="top-bar-left">
+    <button id="btn-open-creator" class="ui pill-btn" title="Tự tạo thiệp riêng gửi người thân">
+      <span class="btn-icon">✨</span>
+      <span class="btn-text">Tạo thiệp riêng</span>
+    </button>
+    <button id="btn-skip-final" class="ui pill-btn pill-btn-subtle" title="Đến ngay màn nhận thiệp" hidden>
+      <span>Xem thiệp ⏩</span>
+    </button>
+  </div>
+  
+  <div id="music-widget" class="ui">
+    <div class="eq-bars">
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <span class="music-title">Từng Ngày Yêu Em</span>
+    <button id="mute" class="music-btn" aria-label="Bật/tắt nhạc" title="Bật/tắt nhạc">
+      <svg viewBox="0 0 24 24"><g class="on"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 010 7M19 6a8.5 8.5 0 010 12"/></g><g class="off"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 9l5 6M22 9l-5 6"/></g></svg>
+    </button>
+  </div>
+</div>
 
 <div id="stage">
 
@@ -50,15 +73,15 @@
       <g class="node" id="n5"><circle cx="236" cy="178" r="9" fill="rgba(255,190,225,.28)"/><circle cx="236" cy="178" r="4.5" fill="#fff"/></g>
       <g class="lbl" id="l5"><text class="hname" x="249" y="176">Nguyễn Thị Định</text><text class="hyear" x="249" y="190">1920–1992</text></g>
       <g class="node" id="n6"><circle cx="180" cy="252" r="16" fill="rgba(255,217,138,.22)"/><circle cx="180" cy="252" r="7" fill="#ffd98a"/><path d="M180 232v40M160 252h40" stroke="#ffd98a" stroke-width="1.2" opacity=".7"/></g>
-      <g class="lbl" id="l6"><text class="hyou" x="180" y="286" text-anchor="middle">và cậu nữa</text></g>
+      <g class="lbl" id="l6"><text class="hyou" id="hyou-text" x="180" y="286" text-anchor="middle">và cậu nữa</text></g>
     </svg>
   </div></section>
 
   <section class="scene" id="sc-unseen"><div class="cards">
-    <div class="card rv" id="c1"><span class="ic">☀</span><span>dậy sớm hơn cả nhà để lo bữa sáng</span></div>
+    <div class="card rv" id="c1"><span class="ic">☀</span><span>dậy sớm hơn cả nhà để lo bữa sáng chu đáo</span></div>
     <div class="card rv" id="c2"><span class="ic">✿</span><span>nhớ mọi sinh nhật, mọi lời dặn, mọi chuyện nhỏ của người thân</span></div>
-    <div class="card rv" id="c3"><span class="ic">☾</span><span>nói “mình ổn” dù đôi khi đã rất mệt</span></div>
-    <div class="card rv" id="c4"><span class="ic">✦</span><span>vừa lo cho người khác, vừa cố giữ ước mơ của riêng mình</span></div>
+    <div class="card rv" id="c3"><span class="ic">☾</span><span>luôn nói “mình ổn” dù đôi khi đã rất mệt mỏi</span></div>
+    <div class="card rv" id="c4"><span class="ic">✦</span><span>vừa hết lòng vì mọi người, vừa nỗ lực giữ ước mơ của riêng mình</span></div>
   </div></section>
 
   <section class="scene" id="sc-health"><div class="health">
@@ -129,24 +152,67 @@
       <path d="M110 236 L142 326 M190 236 L158 326" stroke="#fff" stroke-opacity=".35" stroke-width="1.5" fill="none"/>
       <path d="M150 258 q-30 -26 -40 -4 q10 20 40 4 q30 16 40 -4 q-10 -22 -40 4z" fill="#fff" opacity=".95"/><circle cx="150" cy="258" r="6" fill="#ffc2dd"/>
       <path d="M146 262 q-10 26 -22 40 M154 262 q10 26 22 40" stroke="#fff" stroke-width="3.5" stroke-linecap="round" fill="none" opacity=".9"/>
-      </svg>
+    </svg>
   </div></div></section>
 
   <section class="scene" id="sc-question"><div class="qbtns rv" id="q1">
     <button data-a="yes">rồi nè ✿</button><button data-a="no">chưa nữa…</button>
   </div></section>
 
-  <section class="scene" id="sc-final"><div class="final">
-    <div class="f-sub">chúc mừng ngày</div>
-    <h1>Phụ nữ Việt Nam</h1>
-    <div class="f-date">20 · 10</div>
-    <p class="f-to" id="f-to">gửi người phụ nữ tuyệt vời</p>
-    <p class="f-msg">mong mỗi ngày của cậu đều có hoa, có nắng, có tiếng cười — và có người nhớ đến cậu thật nhiều.</p>
-    <div class="f-act">
-      <button id="b-link" class="alt" hidden>chép link</button>
-      <button id="b-replay" class="alt">xem lại</button>
+  <!-- Màn kết thúc: Phong bì thư 3D tương tác & Thẻ quà tặng lung linh -->
+  <section class="scene" id="sc-final">
+    <div class="envelope-scene-wrapper">
+      <div id="gift-envelope" class="envelope-box">
+        <div class="env-back"></div>
+        
+        <!-- Lá thiệp trượt ra từ bên trong phong bì -->
+        <div class="final card-letter" id="final-card">
+          <div class="f-sub">CHÚC MỪNG NGÀY</div>
+          <h1>Phụ Nữ Việt Nam</h1>
+          <div class="f-date">20 · 10</div>
+          
+          <div class="f-to-box">
+            <span class="f-badge">Thương gửi</span>
+            <h3 class="f-to" id="f-to">người phụ nữ tuyệt vời</h3>
+          </div>
+          
+          <p class="f-msg" id="f-msg">mong mỗi ngày của cậu đều ngập tràn hoa tươi, ấm áp ánh nắng, rộn rã tiếng cười — và luôn được yêu thương trọn vẹn.</p>
+          
+          <div class="f-from-box" id="f-from-box">
+            <span class="from-label">Thân gửi từ:</span>
+            <span class="f-from" id="f-from">Người luôn dõi theo bạn</span>
+          </div>
+
+          <div class="f-act">
+            <button id="b-heart" class="act-btn btn-heart" type="button" title="Thả tim">
+              <span class="h-icon">❤️</span> <span id="heart-lbl">Thả tim</span> (<span id="heart-count">0</span>)
+            </button>
+            <button id="b-link" class="act-btn btn-share" type="button" title="Sao chép link này">
+              <span>🔗 Chép link</span>
+            </button>
+            <button id="b-create-now" class="act-btn btn-create" type="button" title="Tạo thiệp mới">
+              <span>✨ Tạo thiệp mới</span>
+            </button>
+            <button id="b-replay" class="act-btn btn-alt" type="button" title="Xem lại">
+              <span>↺ Xem lại</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="env-front"></div>
+        <div class="env-flap">
+          <div class="wax-seal">
+            <span class="seal-icon">✿</span>
+            <span class="seal-text">20/10</span>
+          </div>
+        </div>
+
+        <div class="env-hint" id="env-hint">
+          <span>💌 Chạm vào phong bì để mở thư riêng nhé!</span>
+        </div>
+      </div>
     </div>
-  </div></section>
+  </section>
 
   <!-- ===== Nụ — nhân vật gốc ===== -->
   <div id="nu" class="wave" aria-hidden="true">
@@ -170,6 +236,7 @@
   <div id="hint">chạm để qua</div>
 </div>
 
+<!-- Màn hình mở đầu -->
 <div id="start">
   <svg class="bud" viewBox="0 0 120 150"><defs><linearGradient id="bg1" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff8fbd"/><stop offset="1" stop-color="#fff0f7"/></linearGradient></defs>
     <path d="M60 140 C60 110 58 96 60 80" stroke="#6fe0b4" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M60 118 q-26 -4 -30 -26 q26 2 30 26z" fill="#6fe0b4" opacity=".9"/>
@@ -178,6 +245,60 @@
   <p>chạm để mở quà</p>
   <small>bật âm thanh để nghe trọn vẹn nhé</small>
 </div>
+
+<!-- Modal tạo thiệp cá nhân hóa -->
+<div id="modal-creator" class="modal-backdrop" aria-hidden="true">
+  <div class="modal-card">
+    <button class="modal-close" id="btn-close-modal" aria-label="Đóng">✕</button>
+    
+    <div class="modal-header">
+      <div class="modal-badge">✨ THIỆP CÁ NHÂN HÓA 20/10</div>
+      <h2>Tạo Thiệp Gửi Tặng</h2>
+      <p>Tạo link quà tặng kèm tên riêng và lời chúc ý nghĩa gửi qua Zalo / Messenger</p>
+    </div>
+
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="inp-to">Gửi đến ai (Tên người nhận):</label>
+          <input type="text" id="inp-to" placeholder="Ví dụ: Mẹ yêu, Bé Thảo, Cô Dung..." maxlength="40">
+        </div>
+        <div class="form-group">
+          <label for="inp-from">Từ ai (Tên người gửi):</label>
+          <input type="text" id="inp-from" placeholder="Ví dụ: Con trai, Tuấn, Anh người yêu..." maxlength="40">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Chọn đối tượng để nhận gợi ý lời chúc:</label>
+        <div class="rel-pills" id="rel-pills">
+          <button type="button" class="rel-pill active" data-rel="crush">💖 Người yêu / Vợ</button>
+          <button type="button" class="rel-pill" data-rel="mom">🌸 Mẹ / Bà</button>
+          <button type="button" class="rel-pill" data-rel="sister">🌷 Chị / Em gái</button>
+          <button type="button" class="rel-pill" data-rel="friend">✨ Bạn bè / Đồng nghiệp</button>
+          <button type="button" class="rel-pill" data-rel="teacher">📚 Cô giáo</button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="inp-msg">Lời chúc của bạn (Nội dung hiển thị trên thiệp):</label>
+        <textarea id="inp-msg" rows="3" placeholder="Nhập lời chúc riêng hoặc chọn mẫu phía trên..."></textarea>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" id="btn-copy-gift" class="modal-btn btn-primary">
+        <span>📋 Tạo & Chép Link gửi tặng</span>
+      </button>
+      <button type="button" id="btn-preview-gift" class="modal-btn btn-secondary">
+        <span>👁️ Xem thử ngay</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast thông báo -->
+<div id="toast" class="toast-box"></div>
 
 <audio id="bgm" loop preload="auto" playsinline src="music.mp3"></audio>
 
