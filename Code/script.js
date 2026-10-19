@@ -20,12 +20,14 @@
 
   const esc = s => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
+  const DEFAULT_WISH = "Chúc em ngày 20/10 thật nhiều niềm vui, luôn rạng rỡ và hạnh phúc. Cảm ơn em vì đã đến và làm thế giới của anh trở nên dịu dàng hơn mỗi ngày! ❤️";
+
   const WISH_TEMPLATES = {
-    crush: "Chúc em ngày 20/10 thật nhiều niềm vui, luôn rạng rỡ và hạnh phúc. Cảm ơn em vì đã đến và làm thế giới của anh trở nên dịu dàng hơn mỗi ngày! ❤️",
-    mom: "Chúc Mẹ kính yêu của con ngày 20/10 luôn tràn đầy sức khỏe, bình an và hạnh phúc. Cảm ơn Mẹ vì tất cả những hy sinh thầm lặng dành cho gia đình. Con yêu Mẹ rất nhiều! 🌸",
-    sister: "Chúc chị/em gái ngày 20/10 luôn xinh đẹp, rạng rỡ, học tập và công việc luôn thuận lợi, sớm đạt được mọi ước mơ nhé! 🌷",
-    friend: "Chúc bạn ngày 20/10 luôn vui vẻ, xinh xắn như hoa, tự tin tỏa sáng và gặt hái thật nhiều thành công trên con đường mình chọn! ✨",
-    teacher: "Nhân ngày 20/10, em xin kính chúc Cô luôn mạnh khỏe, hạnh phúc và tràn đầy nhiệt huyết trong sự nghiệp trồng người cao quý! 📚"
+    crush: DEFAULT_WISH,
+    mom: DEFAULT_WISH,
+    sister: DEFAULT_WISH,
+    friend: DEFAULT_WISH,
+    teacher: DEFAULT_WISH
   };
 
   /* ================= KỊCH BẢN TÙY BIẾN ================= */
