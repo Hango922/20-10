@@ -46,12 +46,8 @@
       { say: 'từ Hai Bà Trưng, Bà Triệu thuở mở cõi, đến những nữ anh hùng kiên trung của thời đại mới', bars: 2.4, mood: 'talk', reveal: ['n3', 'l3', 'e23', 'n4', 'l4', 'e24', 'n5', 'l5', 'e35', 'e45'] },
       { say: 'và cả những người phụ nữ thầm lặng tuyệt vời quanh ta: các bà, các mẹ, các chị, người thương và tất cả các bạn nữ!', bars: 2.8, mood: 'happy', reveal: ['n6', 'l6', 'e46', 'e56'], fx: { meteor: 2.2, petals: .4 } },
 
-      { scene: 'unseen', say: 'có những điều rất nhỏ mà phụ nữ vẫn lặng lẽ vun vén mỗi ngày…', bars: 2, mood: 'talk', bg: 2, fx: { petals: .3 } },
-      { say: '', bars: 1.15, reveal: ['c1'] },
-      { say: '', bars: 1.15, reveal: ['c2'] },
-      { say: '', bars: 1.15, reveal: ['c3'] },
-      { say: '', bars: 1.4, reveal: ['c4'] },
-      { say: 'những hy sinh thầm lặng ấy luôn xứng đáng được nâng niu', bars: 2, mood: 'shy' },
+      { scene: 'unseen', say: 'có những điều rất nhỏ mà phụ nữ vẫn lặng lẽ vun vén mỗi ngày…', mood: 'talk', bg: 2, fx: { petals: .3 }, reveal: ['c1', 'c2', 'c3', 'c4'] },
+      { say: 'những hy sinh thầm lặng ấy luôn xứng đáng được nâng niu', mood: 'shy' },
       { scene: 'none', mode: 'hero', say: 'nên ngày hôm nay là để <em>tất cả những người phụ nữ</em> được yêu thương và tôn vinh!', bars: 2.4, mood: 'happy', fx: { petals: 1.2 } },
 
       { say: 'Nụ xin gửi đến tất cả mọi người những lời chúc ấm áp nhất nhé 💐', bars: 2, mood: 'wave', bg: 2 },
@@ -132,15 +128,12 @@
     if (st.reveal) st.reveal.forEach((id, j) => setTimeout(() => { const e = document.getElementById(id); if (e) e.classList.add('on'); }, (st.scene ? 650 : 0) + j * 260));
     if (st.on) st.on();
     prog.style.width = ((n + 1) / S.length * 100) + '%';
-    hint.classList.toggle('on', n >= 1 && n <= 4);
+    hint.classList.toggle('on', !st.final && !st.wait);
     waiting = !!st.wait;
-    if (!st.wait && !qp.has('hold')) {
-      timer = setTimeout(() => go(n + 1), snap((st.bars || 1.6) * BAR));
-    }
     if (st.final) setupFinal();
   }
 
-  function next() { const now = Date.now(); if (now - lock < 350) return; lock = now; if (!waiting && idx < S.length - 1) go(idx + 1); }
+  function next() { const now = Date.now(); if (now - lock < 280) return; lock = now; if (!waiting && idx < S.length - 1) go(idx + 1); }
 
   /* ================= TƯƠNG TÁC CHẠM & CLICK RIPPLE ================= */
   document.addEventListener('click', e => {
