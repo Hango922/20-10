@@ -16,11 +16,11 @@
   let TO = (qp.get('to') || '').trim().slice(0, 40);
   let FROM = (qp.get('from') || '').trim().slice(0, 40);
   let REL = (qp.get('rel') || 'crush').trim().toLowerCase();
-  let MSG = (qp.get('msg') || '').trim().slice(0, 250);
+  let MSG = (qp.get('msg') || '').trim().slice(0, 3000);
 
   const esc = s => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-  const DEFAULT_WISH = "Chúc em ngày 20/10 thật nhiều niềm vui, luôn rạng rỡ và hạnh phúc. Cảm ơn em vì đã đến và làm thế giới của anh trở nên dịu dàng hơn mỗi ngày! ❤️";
+  const DEFAULT_WISH = `🌷❤️ Nhân ngày 20/10, chúc tất cả những người phụ nữ tuyệt vời xung quanh mình, từ các bà, các mẹ, các chị, người yêu đến tất cả các bạn nữ, luôn mạnh khỏe, xinh đẹp và thật nhiều niềm vui nhé! 🥰💐\n\nChúc các bà, các mẹ luôn bình an, mạnh khỏe, sống vui vẻ bên con cháu. Chúc các chị lúc nào cũng xinh đẹp, công việc thuận lợi, cuộc sống suôn sẻ, mọi điều như ý. Chúc người yêu luôn vui vẻ, hạnh phúc, ngày càng xinh đẹp và lúc nào cũng được yêu thương thật nhiều. Còn các bạn nữ thì chúc mọi người luôn rạng rỡ, học tập và làm việc tốt, sớm đạt được những điều mình mong muốn, tiền vào như nước, tình duyên thuận lợi, ngày nào cũng cười tươi như hoa. 😂❤️\n\nMong rằng không chỉ hôm nay mà ngày nào mọi người cũng đều được yêu thương, quan tâm và trân trọng. Chúc mọi người luôn gặp những điều may mắn, buồn phiền ít thôi, niềm vui nhiều lên, muốn gì được nấy và luôn có những người thật lòng bên cạnh mình.\n\nChúc tất cả mọi người có một ngày 20/10 thật vui vẻ, nhận được thật nhiều hoa, quà và lời yêu thương nhé! Chúc mừng ngày Phụ nữ Việt Nam 20/10! 🌹❤️🥳`;
 
   const WISH_TEMPLATES = {
     crush: DEFAULT_WISH,
