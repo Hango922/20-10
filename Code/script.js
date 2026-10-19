@@ -30,52 +30,43 @@
     teacher: DEFAULT_WISH
   };
 
-  /* ================= KỊCH BẢN TÙY BIẾN ================= */
+  /* ================= KỊCH BẢN CHÚC TẤT CẢ PHỤ NỮ ================= */
   function buildScript() {
-    let introSay = 'này cậu ơi!';
-    if (REL === 'mom') introSay = 'Mẹ ơi! Nụ có một món quà nhỏ…';
-    else if (REL === 'teacher') introSay = 'Kính gửi Cô giáo kính mến…';
-    else if (TO) introSay = 'này <em>' + esc(TO) + '</em> ơi!';
-
-    let heroSay = 'và còn những người không có tên trong sách: bà, mẹ, chị, cô giáo… và cả <em>cậu</em> nữa';
-    if (REL === 'mom') heroSay = 'và người phụ nữ vĩ đại nhất trong trái tim con: chính là <em>Mẹ</em>';
-    else if (REL === 'crush' && TO) heroSay = 'và với tớ, cô gái tuyệt vời và đáng yêu nhất chính là <em>' + esc(TO) + '</em>';
-
     return [
-      { say: introSay, bars: 1.2, mood: 'wave', mode: 'hero', bg: 0, fx: { meteor: 1 } },
-      { say: 'tớ là <em>Nụ</em> — nàng tiên nhỏ của vườn hoa', bars: 1.7, mood: 'talk' },
-      { say: 'hôm nay tớ được giao một nhiệm vụ đặc biệt lắm đó…', bars: 1.7, mood: 'shy' },
-      { say: 'vì nay là ngày…', bars: 1, mood: 'talk' },
-      { scene: 'date', mode: 'side', say: '<em>20/10</em> rồi!', bars: 1.7, mood: 'happy', bg: 2, fx: { petals: .8, meteor: 1 } },
+      { say: 'Xin chào tất cả mọi người! 🌸', bars: 1.5, mood: 'wave', mode: 'hero', bg: 0, fx: { meteor: 1 } },
+      { say: 'tớ là <em>Nụ</em> — sứ giả của niềm vui và những bông hoa', bars: 1.8, mood: 'talk' },
+      { say: 'hôm nay tớ mang một nhiệm vụ thật thiêng liêng và ý nghĩa…', bars: 1.8, mood: 'shy' },
+      { say: 'vì hôm nay chính là…', bars: 1.2, mood: 'talk' },
+      { scene: 'date', mode: 'side', say: 'ngày <em>20/10</em> — Ngày Phụ nữ Việt Nam! 💐', bars: 1.9, mood: 'happy', bg: 2, fx: { petals: .8, meteor: 1 } },
 
       { scene: 'history', say: 'ngày 20/10/1930, Hội Phụ nữ phản đế Việt Nam ra đời', bars: 2, mood: 'talk', reveal: ['h1', 'h2'] },
-      { say: 'đã <em>' + YRS + '</em> năm trôi qua, và 20/10 thành ngày cả nước dành để tri ân phụ nữ', bars: 2.3, mood: 'talk', reveal: ['h3', 'h4'], on() { countTo($('#yrs'), YRS, 2200) } },
+      { say: 'đã <em>' + YRS + '</em> năm trôi qua, ngày mà cả đất nước cùng hướng về để tri ân phái đẹp', bars: 2.3, mood: 'talk', reveal: ['h3', 'h4'], on() { countTo($('#yrs'), YRS, 2200) } },
 
-      { scene: 'heroes', say: 'trong câu chuyện đất nước, có biết bao người phụ nữ phi thường…', bars: 2, mood: 'talk', bg: 0, fx: { meteor: 1.6 }, reveal: ['n1', 'l1', 'n2', 'l2', 'e12'] },
-      { say: 'từ Hai Bà Trưng, Bà Triệu thuở dựng nước, đến những người con gái kiên cường của thế kỷ XX', bars: 2.4, mood: 'talk', reveal: ['n3', 'l3', 'e23', 'n4', 'l4', 'e24', 'n5', 'l5', 'e35', 'e45'] },
-      { say: heroSay, bars: 2.5, mood: 'happy', reveal: ['n6', 'l6', 'e46', 'e56'], fx: { meteor: 2.2, petals: .4 } },
+      { scene: 'heroes', say: 'trong lịch sử đất nước, có biết bao người phụ nữ kiên cường, vĩ đại…', bars: 2.1, mood: 'talk', bg: 0, fx: { meteor: 1.6 }, reveal: ['n1', 'l1', 'n2', 'l2', 'e12'] },
+      { say: 'từ Hai Bà Trưng, Bà Triệu thuở mở cõi, đến những nữ anh hùng kiên trung của thời đại mới', bars: 2.4, mood: 'talk', reveal: ['n3', 'l3', 'e23', 'n4', 'l4', 'e24', 'n5', 'l5', 'e35', 'e45'] },
+      { say: 'và cả những người phụ nữ thầm lặng tuyệt vời quanh ta: các bà, các mẹ, các chị, người thương và tất cả các bạn nữ!', bars: 2.8, mood: 'happy', reveal: ['n6', 'l6', 'e46', 'e56'], fx: { meteor: 2.2, petals: .4 } },
 
-      { scene: 'unseen', say: 'có những điều rất nhỏ mà phụ nữ vẫn lặng lẽ làm mỗi ngày…', bars: 2, mood: 'talk', bg: 2, fx: { petals: .3 } },
+      { scene: 'unseen', say: 'có những điều rất nhỏ mà phụ nữ vẫn lặng lẽ vun vén mỗi ngày…', bars: 2, mood: 'talk', bg: 2, fx: { petals: .3 } },
       { say: '', bars: 1.15, reveal: ['c1'] },
       { say: '', bars: 1.15, reveal: ['c2'] },
       { say: '', bars: 1.15, reveal: ['c3'] },
       { say: '', bars: 1.4, reveal: ['c4'] },
-      { say: 'mà hiếm khi có ai nói lời cảm ơn', bars: 1.8, mood: 'shy' },
-      { scene: 'none', mode: 'hero', say: 'nên hôm nay, đến lượt <em>' + esc(TO || 'cậu') + '</em> được quan tâm', bars: 2, mood: 'happy', fx: { petals: 1.2 } },
+      { say: 'những hy sinh thầm lặng ấy luôn xứng đáng được nâng niu', bars: 2, mood: 'shy' },
+      { scene: 'none', mode: 'hero', say: 'nên ngày hôm nay là để <em>tất cả những người phụ nữ</em> được yêu thương và tôn vinh!', bars: 2.4, mood: 'happy', fx: { petals: 1.2 } },
 
-      { say: 'tớ xin gửi cậu bốn lời chúc nhé', bars: 1.5, mood: 'wave', bg: 2 },
-      { scene: 'health', mode: 'side', say: 'chúc cậu thật nhiều <em>sức khỏe</em> — để luôn an lành và theo đuổi đam mê', bars: 2.4, mood: 'talk', bg: 1, fx: { meteor: .6 } },
-      { scene: 'peace', say: 'chúc cậu <em>bình yên</em> — dù ngoài kia cuộc sống có hối hả thế nào', bars: 2.2, mood: 'talk', bg: 1 },
-      { scene: 'free', say: 'chúc cậu đủ <em>tự do</em> để làm điều mình thích, và đủ dũng cảm để mỉm cười mỗi ngày', bars: 2.5, mood: 'talk', bg: 0, fx: { lantern: 1, meteor: .8 } },
-      { scene: 'love', say: 'chúc cậu luôn được <em>yêu thương</em> — thật trọn vẹn, chân thành, và ấm áp nhất', bars: 2.5, mood: 'happy', bg: 2, fx: { hearts: 1.2, petals: .4 } },
+      { say: 'Nụ xin gửi đến tất cả mọi người những lời chúc ấm áp nhất nhé 💐', bars: 2, mood: 'wave', bg: 2 },
+      { scene: 'health', mode: 'side', say: 'Kính chúc các bà, các mẹ luôn <em>bình an, mạnh khỏe</em>, sống vui tươi hạnh phúc bên con cháu 🌸', bars: 2.6, mood: 'talk', bg: 1, fx: { meteor: .6 } },
+      { scene: 'peace', say: 'Chúc các chị em lúc nào cũng <em>xinh đẹp, thuận lợi</em>, công việc suôn sẻ và vạn sự như ý ✨', bars: 2.6, mood: 'talk', bg: 1 },
+      { scene: 'free', say: 'Chúc người yêu, bạn gái luôn <em>ngọt ngào, rạng rỡ</em> và lúc nào cũng được yêu thương thật nhiều 🥰', bars: 2.6, mood: 'talk', bg: 0, fx: { lantern: 1, meteor: .8 } },
+      { scene: 'love', say: 'Chúc tất cả các bạn nữ luôn <em>tươi vui như hoa</em>, tiền vào như nước, tình duyên như ý! 💖', bars: 2.6, mood: 'happy', bg: 2, fx: { hearts: 1.2, petals: .4 } },
 
-      { scene: 'none', mode: 'hero', say: 'cậu không cần phải luôn hoàn hảo đâu', bars: 1.6, mood: 'talk', fx: { petals: .8 } },
-      { say: 'cậu đẹp ở nụ cười, ở sự nỗ lực, và ở sự dịu dàng vốn có', bars: 2.4, mood: 'shy' },
+      { scene: 'none', mode: 'hero', say: 'phụ nữ sinh ra là để được trân trọng và hạnh phúc', bars: 2, mood: 'talk', fx: { petals: .8 } },
+      { say: 'mọi người luôn đẹp rạng ngời ở nụ cười, sự tần tảo và tấm lòng dịu dàng nhất', bars: 2.5, mood: 'shy' },
 
-      { scene: 'gift', mode: 'side', say: 'tớ tặng cậu bó hoa này nè 💐', bars: 1.8, mood: 'happy', bg: 3, fx: { petals: 1.2, meadow: 1.2 } },
-      { say: 'loài hoa tượng trưng cho sự trân trọng và những điều tốt đẹp nhất', bars: 2.4, mood: 'talk' },
+      { scene: 'gift', mode: 'side', say: 'Nụ xin kính tặng tất cả mọi người bó hoa tươi thắm nhất này nhé 💐', bars: 2.2, mood: 'happy', bg: 3, fx: { petals: 1.2, meadow: 1.2 } },
+      { say: 'loài hoa tượng trưng cho sự tri ân và những điều tuyệt vời nhất dành cho phái đẹp', bars: 2.5, mood: 'talk' },
 
-      { scene: 'question', mode: 'hero', say: 'cho tớ hỏi một câu thôi nhé…<br>hôm nay cậu đã <em>khen bản thân</em> chưa?', bars: 2, mood: 'wink', bg: 2, fx: { petals: .4, meteor: 1 }, wait: true, reveal: ['q1'] },
+      { scene: 'question', mode: 'hero', say: 'cho Nụ hỏi mọi người một câu nhé…<br>hôm nay mọi người đã <em>nhận được thật nhiều niềm vui</em> chưa?', bars: 2.4, mood: 'wink', bg: 2, fx: { petals: .4, meteor: 1 }, wait: true, reveal: ['q1'] },
       { scene: 'final', mode: 'side', say: '', mood: 'happy', bg: 3, fx: { fire: 2.2, petals: 1.2, meadow: 1.5 }, wait: true, final: true }
     ];
   }
@@ -201,9 +192,9 @@
     if (q1) q1.classList.remove('on');
     mood('happy'); talk(true);
     if (ans === 'yes') {
-      say('giỏi quá! cứ khen thật nhiều vào nhé — cậu xứng đáng được nâng niu mà 💖');
+      say('Tuyệt vời quá! Chúc mọi người cả hôm nay và mãi sau này đều rạng rỡ, ngập tràn niềm vui như thế nhé 💖');
     } else {
-      say('vậy để tớ khen giúp: cậu <em>mạnh mẽ</em> hơn cậu nghĩ, <em>dịu dàng</em> hơn cậu tưởng, và luôn rất tuyệt vời!');
+      say('Đừng lo nhé! Hôm nay cả thế giới đều dành trọn sự yêu thương, trân trọng và những điều ngọt ngào nhất cho mọi người!');
     }
     clearTimeout(timer);
     timer = setTimeout(() => {
@@ -236,14 +227,14 @@
   const envBox = $('#gift-envelope');
 
   function setupFinal() {
-    const to = TO || 'người phụ nữ tuyệt vời';
-    const from = FROM || 'Người luôn yêu mến bạn';
-    const customMsg = MSG || WISH_TEMPLATES[REL] || WISH_TEMPLATES.crush;
+    const to = TO || 'Tất cả những người phụ nữ tuyệt vời 🌷';
+    const from = FROM || 'Người luôn yêu mến & trân trọng bạn';
+    const customMsg = MSG || DEFAULT_WISH;
 
     $('#f-to').textContent = to;
     $('#f-msg').textContent = customMsg;
     $('#f-from').textContent = from;
-    $('#hyou-text').textContent = TO ? 'và ' + TO + ' nữa' : 'và cậu nữa';
+    $('#hyou-text').textContent = 'và tất cả mọi người nữa';
 
     // Khởi động pháo hoa rực rỡ
     fireworksBurst();
